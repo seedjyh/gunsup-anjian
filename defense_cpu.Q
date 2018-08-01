@@ -536,6 +536,24 @@ Function clickSteamInTaskBar()
 	End If
 End Function
 
+// 点击“Steam”最大化窗口中的“库”按钮
+Function clickStorageButtonInSteamMaxWindow()
+	logDebug ("clickStorageButtonInSteamMaxWindow...")
+	Hwnd = Plugin.Window.Find(0, "Steam")
+	If Plugin.Window.IsWindow(Hwnd) = 1 Then 
+		sRect = Plugin.Window.GetClientRect(Hwnd)'获取窗口的4个坐标
+		myArray = Split(srect, "|")
+		L = CLng(myArray(0))
+		T = CLng(myArray(1))
+		R = CLng(myArray(2))
+		B = CLng(myArray(3))
+		MoveTo L+150, T+50
+		Delay 1000
+		LeftClick 1
+		Delay 1000
+	End If
+End Function
+
 // 点击“Steam”最大化窗口中的“GunsUp”的“开始”按钮
 Function clickGunsUpStartButtonInSteamMaxWindow()
 	logDebug ("clickGunsUpStartButtonInSteamMaxWindow...")
@@ -548,9 +566,9 @@ Function clickGunsUpStartButtonInSteamMaxWindow()
 		R = CLng(myArray(2))
 		B = CLng(myArray(3))
 		MoveTo L+340, T+200
-		Delay 1000
+		Delay 300
 		LeftClick 1
-		Delay 30000
+		Delay 3000
 	End If
 End Function
 
@@ -561,7 +579,7 @@ Function loginSteam()
 	Delay 300
 	LeftClick 1
 	Delay 300
-	SayString "" // 这里填入自己的steam密码（明文，故不要散发有自己密码的版本）。
+	SayString Plugin.File.ReadFileEx("d:\steam-password.txt") // 此文件填入自己的steam密码（明文）。
 	Delay 300
 	MoveTo 832, 571
 	Delay 300
@@ -978,6 +996,7 @@ Function processWindowsDesktop()
 	Else 
 		If existSteamInTaskBar() Then 
 			If isMaxWindowSteam() Then 
+				Call clickStorageButtonInSteamMaxWindow()
 				Call clickGunsUpStartButtonInSteamMaxWindow()
 			Else 
 				Call clickSteamInTaskBar()
