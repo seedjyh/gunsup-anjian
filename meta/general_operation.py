@@ -21,7 +21,7 @@ class GeneralOperation(Function):
         End Function
         :return: a str with "\t" and "\n".
         """
-        result = "Function %s()%s" % (self.get_function_name(), newline)
+        result = "Function %s%s()" % (self.get_function_prefix(self.path), self.name) + newline
         for line in self.content_lines:
             result += "    " + line + newline
         result += "End Function" + newline

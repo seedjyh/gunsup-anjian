@@ -6,14 +6,17 @@ from meta.file import File
 
 
 class Function(File):
-    def get_function_name(self):
+    @staticmethod
+    def get_function_prefix(path=None):
         """
-        If path path[0] = "A", path[1] = "B", name = "X", this function returns "A_B_X".
-        :return: Name of function of this object specified in final dumped result.
+        If path path[0] = "A", path[1] = "B", name = "X", this function returns "A_B_".
+        :return: Prefix in the name of function of this object specified in final dumped result.
         """
-        result = self.name
-        for n in self.path[::-1]:
-            result = n + "_" + result
+        if path == None:
+            path = []
+        result = ""
+        for n in path:
+            result += n + "_"
         return result
 
 if __name__ == "__main__":
