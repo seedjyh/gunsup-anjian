@@ -15,13 +15,12 @@ class TestGeneralOperation(TestCase):
         path = ["General", "Static"]
         name = "MyOp"
         lines = ["First line", "Second line", "Third line"]
-        op = GeneralOperation(path, name, lines)
-        result = op.dump()
-        self.assertEqual(
+        expected = \
             "Function General_Static_MyOp()\n"\
             "    First line\n"\
             "    Second line\n"\
             "    Third line\n"\
-            "End Function\n",
-            result
-        )
+            "End Function\n"
+        obj = GeneralOperation(path, name, lines)
+        result = obj.dump()
+        self.assertEqual(expected, result)

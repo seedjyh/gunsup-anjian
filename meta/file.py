@@ -23,7 +23,7 @@ class File:
         self.name = name
         self.content_lines = content_lines
 
-    def dump(self):
+    def dump(self, newline="\n"):
         return ""
 
 
