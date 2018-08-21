@@ -24,7 +24,7 @@ class File:
         self.content_lines = content_lines
 
     def dump(self, newline="\n"):
-        return ""
+        return newline.join(self.content_lines) + newline
 
 
 if __name__ == "__main__":
