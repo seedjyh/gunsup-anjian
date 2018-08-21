@@ -16,11 +16,11 @@ class TestWindowFrameChecker(TestCase):
         obj = WindowFrameChecker(path, name, lines)
         expected = \
             "Function window_GunsUp_isWar(left, top, right, bottom)\n"\
-            "    If Not (window_GunsUp_isTopWar()) Then\n"\
+            "    If Not (window_GunsUp_isTopWar(left, top, right, bottom)) Then\n"\
             "        window_GunsUp_isWar = False\n"\
-            "    ElseIf Not (window_GunsUp_isLeftBottomReturn()) Then\n"\
+            "    ElseIf Not (window_GunsUp_isLeftBottomReturn(left, top, right, bottom)) Then\n"\
             "        window_GunsUp_isWar = False\n"\
-            "    ElseIf Not (window_GunsUp_isRightBottomGear()) Then\n"\
+            "    ElseIf Not (window_GunsUp_isRightBottomGear(left, top, right, bottom)) Then\n"\
             "        window_GunsUp_isWar = False\n"\
             "    Else\n"\
             "        window_GunsUp_isWar = True\n"\

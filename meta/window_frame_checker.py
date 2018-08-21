@@ -11,7 +11,7 @@ class WindowFrameChecker(Function):
         function_name = function_prefix + self.name
         result = "Function %s(left, top, right, bottom)" % function_name + newline
         for index, line in enumerate(self.content_lines):
-            result += "    %s Not (%s%s()) Then" % ("If" if index == 0 else "ElseIf", function_prefix, line) + newline
+            result += "    %s Not (%s%s(left, top, right, bottom)) Then" % ("If" if index == 0 else "ElseIf", function_prefix, line) + newline
             result += "        %s = False" % function_name + newline
         result += "    Else" + newline
         result += "        %s = True" % function_name + newline
