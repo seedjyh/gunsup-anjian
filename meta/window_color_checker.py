@@ -4,21 +4,27 @@
 # Create date: 2018/8/20
 import re
 
-from meta.function import Function
+from meta.compiler import Compiler
+from meta.directory import Directory
 
 
-class WindowColorChecker(Function):
-    def dump(self, newline="\n"):
-        function_name = self.get_function_prefix(self.path) + self.name
-        result = "Function %s(left, top, right, bottom)" % function_name + newline
-        for index, line in enumerate(self.content_lines):
+class WindowColorChecker(Compiler):
+    def __init__(self, newline="\n"):
+        Compiler.__init__(self, newline)
+        self.rect_parameter_list = ("left", "top", "right", "bottom")
+
+    def compile(self, path: str, source: Directory) -> str:
+        function_name = self.get_function_name(path)
+        result = ""
+        result += "Function %s(%s)" % (function_name, ", ".join(self.rect_parameter_list)) + self._newline
+        for index,line in enumerate(source.locate(path).lines()):
             x, y, color, diff = re.split(r" +", line.strip())
-            result += "    %sIf Not (similarColor(GetPixelColor(left+%s, top+%s), \"%s\", %s))  Then" % ("" if index == 0 else "Else", x, y, color, diff) + newline
-            result += "        %s = False" % function_name + newline
-        result += "    Else" + newline
-        result += "        %s = True" % function_name + newline
-        result += "    End If" + newline
-        result += "End Function" + newline
+            result += "    %sIf Not (similarColor(GetPixelColor(left+%s, top+%s), \"%s\", %s))  Then" % ("" if index == 0 else "Else", x, y, color, diff) + self._newline
+            result += "        %s = False" % function_name + self._newline
+        result += "    Else" + self._newline
+        result += "        %s = True" % function_name + self._newline
+        result += "    End If" + self._newline
+        result += "End Function" + self._newline
         return result
 
 
