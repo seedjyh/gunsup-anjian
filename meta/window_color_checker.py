@@ -17,7 +17,7 @@ class WindowColorChecker(Compiler):
         function_name = self.get_function_name(path)
         result = ""
         result += "Function %s(%s)" % (function_name, ", ".join(self.rect_parameter_list)) + self._newline
-        for index,line in enumerate(source.locate(path).lines()):
+        for index, line in enumerate(source.locate(path).lines()):
             x, y, color, diff = re.split(r" +", line.strip())
             result += "    %sIf Not (similarColor(GetPixelColor(left+%s, top+%s), \"%s\", %s))  Then" % ("" if index == 0 else "Else", x, y, color, diff) + self._newline
             result += "        %s = False" % function_name + self._newline

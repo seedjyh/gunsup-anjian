@@ -24,6 +24,12 @@ class Directory:
     def name(self):
         return self.__name
 
+    def child_files(self):
+        return self.__child_files
+
+    def child_directories(self):
+        return self.__child_directories
+
     def locate(self, path: str):
         stack = path.split("\\")
         if len(stack) > 1:

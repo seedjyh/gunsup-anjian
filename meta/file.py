@@ -24,7 +24,7 @@ class File:
     def load(self, path: str):
         self.__name = os.path.basename(path)
         with open(file=path, mode="r", encoding="utf-8") as fp:
-            self.__content_lines = fp.readlines()
+            self.__content_lines = [line.strip("\n") for line in fp.readlines()]
 
 if __name__ == "__main__":
     pass
