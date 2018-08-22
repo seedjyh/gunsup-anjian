@@ -19,6 +19,7 @@ class TestWindowRule(unittest.TestCase):
         #             +--- GunsUp(directory)
         #                     |
         #                     +--- rule(file)
+        self.source_path = os.path.join("window", "GunsUp", "rule")
         rule = File(
             name="rule",
             content_lines=[
@@ -38,7 +39,6 @@ class TestWindowRule(unittest.TestCase):
             name = "source",
             child_directories={all_window.name(): all_window}
         )
-        self.source_path = os.path.join("window", "GunsUp", "rule")
 
     def test_compile(self):
         compiler = WindowRule()
