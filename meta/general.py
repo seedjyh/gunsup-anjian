@@ -21,14 +21,14 @@ class General(Compiler):
         result = ""
         for file in source.locate(path).child_files().values():
             if file.name()[-2:] == ".Q":
-                result += RawCode(self._newline).compile(os.path.join(path, file.name()), source)
+                result += RawCode(self._newline).compile(os.path.join(path, file.name()), source) + self._newline
         return result
 
     def compile_operation(self, path: str, source: Directory) -> str:
         result = ""
         for file in source.locate(path).child_files().values():
             if file.name()[-3:] == ".op":
-                result += GeneralOperation(self._newline).compile(os.path.join(path, file.name()), source)
+                result += GeneralOperation(self._newline).compile(os.path.join(path, file.name()), source) + self._newline
         return result
 
 

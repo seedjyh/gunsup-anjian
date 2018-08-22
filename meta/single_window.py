@@ -24,25 +24,25 @@ class SingleWindow(Compiler):
     def compile_color_checker(self, path: str, source: Directory) -> str:
         for file in source.locate(path).child_files().values():
             if file.name()[-4:] == ".clr":
-                return WindowColorChecker(self._newline).compile(os.path.join(path, file.name()), source)
+                return WindowColorChecker(self._newline).compile(os.path.join(path, file.name()), source) + self._newline
         return ""
 
     def compile_frame_checker(self, path: str, source: Directory) -> str:
         for file in source.locate(path).child_files().values():
             if file.name()[-4:] == ".frm":
-                return WindowFrameChecker(self._newline).compile(os.path.join(path, file.name()), source)
+                return WindowFrameChecker(self._newline).compile(os.path.join(path, file.name()), source) + self._newline
         return ""
 
     def compile_operation(self, path: str, source: Directory) -> str:
         for file in source.locate(path).child_files().values():
             if file.name()[-3:] == ".op":
-                return WindowOperation(self._newline).compile(os.path.join(path, file.name()), source)
+                return WindowOperation(self._newline).compile(os.path.join(path, file.name()), source) + self._newline
         return ""
 
     def compile_rule(self, path: str, source: Directory) -> str:
         for file in source.locate(path).child_files().values():
             if file.name() == "rule":
-                return WindowRule(self._newline).compile(os.path.join(path, file.name()), source)
+                return WindowRule(self._newline).compile(os.path.join(path, file.name()), source) + self._newline
         return ""
 
 

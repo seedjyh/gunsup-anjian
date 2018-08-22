@@ -13,8 +13,9 @@ class Windows(Compiler):
     def compile(self, path: str, source: Directory) -> str:
         result = ""
         for dir in source.locate(path).child_directories().values():
-            result += SingleWindow(self._newline).compile(os.path.join(path, dir.name()), source)
+            result += SingleWindow(self._newline).compile(os.path.join(path, dir.name()), source) + self._newline
         return result
+
 
 if __name__ == "__main__":
     pass
