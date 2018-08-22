@@ -2,15 +2,15 @@
 # -*- coding: utf-8 -*-
 # Author: seedjyh@gmail.com
 # Create date: 2018/8/17
+from meta.compiler import Compiler
+from meta.directory import Directory
 
-from meta.function import Function
 
-
-class GeneralOperation(Function):
+class GeneralOperation(Compiler):
     """
     An function of <<*.op>>, no argument, no result value.
     """
-    def dump(self, newline="\n"):
+    def compile(self, path: str, source: Directory) -> str:
         """
         Generate a ".Q" code such as
         Function {self.name}()
@@ -21,10 +21,11 @@ class GeneralOperation(Function):
         End Function
         :return: a str with "\t" and "\n".
         """
-        result = "Function %s%s()" % (self.get_function_prefix(self.path), self.name) + newline
-        for line in self.content_lines:
-            result += "    " + line + newline
-        result += "End Function" + newline
+        result = ""
+        result += "Function %s()" % self.get_function_name(path) + self._newline
+        for line in source.locate(path).lines():
+            result += "    " + line + self._newline
+        result += "End Function" + self._newline
         return result
 
 
