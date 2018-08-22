@@ -28,15 +28,15 @@ class TestWindowRule(unittest.TestCase):
             ]
         )
         gunsup_window = Directory(
-            name = "GunsUp",
+            name="GunsUp",
             child_files={rule.name(): rule}
         )
         all_window = Directory(
-            name = "window",
+            name="window",
             child_directories={gunsup_window.name(): gunsup_window}
         )
         self.source_directory = Directory(
-            name = "source",
+            name="source",
             child_directories={all_window.name(): all_window}
         )
 
