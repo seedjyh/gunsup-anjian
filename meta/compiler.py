@@ -21,7 +21,7 @@ class Compiler:
 
     @staticmethod
     def get_function_name(path):
-        return path.replace("\\", "_")
+        return path.split(".")[0].replace("\\", "_") # remove extension of file
 
     @staticmethod
     def get_function_prefix(path):
