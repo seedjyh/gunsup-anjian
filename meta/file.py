@@ -4,10 +4,8 @@
 # Create date: 2018/8/20
 import os
 
-from meta.dumpable import Dumpable
 
-
-class File(Dumpable):
+class File:
     """
     Store raw data from file.
     """
