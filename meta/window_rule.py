@@ -15,7 +15,8 @@ class WindowRule(Compiler):
             checker, processor = line.split("=>")
             result += "    %s %s%s(%s) Then" % ("If" if index == 0 else "ElseIf", self.get_function_prefix(path), checker, ", ".join(rect_parameter_list)) + self._newline
             result += "        Call %s%s(%s)" % (self.get_function_prefix(path), processor, ", ".join(rect_parameter_list)) + self._newline
-        result += "    End If" + self._newline
+        if len(source.locate(path).lines()) > 0:
+            result += "    End If" + self._newline
         result += "End Function" + self._newline
         return result
 
